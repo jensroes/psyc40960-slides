@@ -1,0 +1,742 @@
+/* Shared workshop slide styling for PSYC40540, based on lplus-2026-ws. */
+
+body {
+  background: #000000;
+}
+
+slides > slide {
+  background: #fbfbf7;
+}
+
+/* Title slide background and text overlay. */
+.title-slide {
+  background-image: url("gfx/ntu4.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.title-slide hgroup {
+  background: rgba(0, 0, 0, 0.56);
+  margin-left: -60px;
+  padding: 18px 60px 22px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.title-slide hgroup h1 {
+  color: white;
+  font-size: 50px;
+}
+
+.title-slide hgroup h2 {
+  color: white;
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.title-slide hgroup p {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-top: 18px;
+}
+
+.title-slide hgroup a {
+  color: white;
+}
+
+.title-slides-link {
+  display: inline-block;
+  font-size: 0.82em;
+  margin-top: 10px;
+}
+
+/* Bluesky handle with a small embedded icon. Used on the title and intro slides. */
+.bluesky-account {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.bluesky-account::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 57'%3E%3Cpath fill='%231185fe' d='M13.9 3.4C21.2 8.9 29 20 32 26c3-6 10.8-17.1 18.1-22.6C55.4-.5 64-3.5 64 6.1c0 1.9-1.1 16.1-1.7 18.4-2.2 8-10.4 10-17.6 8.8 12.6 2.1 15.8 9.2 8.9 16.3-13.1 13.5-18.8-3.4-20.3-7.8-.3-.8-.4-1.2-.5-.9-.1-.3-.2.1-.5.9-1.5 4.4-7.2 21.3-20.3 7.8-6.9-7.1-3.7-14.2 8.9-16.3-7.2 1.2-15.4-.8-17.6-8.8C2.6 22.2 1.5 8 1.5 6.1 0-3.5 8.6-.5 13.9 3.4Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 1.1em;
+  width: 1.24em;
+}
+
+.bluesky-account a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* General reusable slide helpers. */
+.topic-label {
+  color: #0868ac;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.source-note {
+  color: #666666;
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+.question {
+  color: #084081;
+  font-size: 31px;
+  line-height: 1.25;
+  margin-top: 1.25em;
+}
+
+.compact-question {
+  font-size: 27px;
+  margin-top: 0.8em;
+}
+
+.take-home {
+  background: #e7f1f8;
+  border-left: 8px solid #0868ac;
+  font-size: 25px;
+  margin-top: 1.25em;
+  padding: 14px 20px;
+}
+
+.large-list {
+  font-size: 25px;
+  line-height: 1.45;
+}
+
+/* Intro slide: text column plus right-hand world map. */
+.intro-profile {
+  align-items: start;
+  display: grid;
+  gap: 28px;
+  /* Second value controls the map column width. Increase it for a larger map. */
+  grid-template-columns: minmax(0, 1fr) 520px;
+  margin-top: 8px;
+}
+
+.intro-profile ul {
+  margin-top: 0;
+}
+
+.intro-profile li {
+  font-size: 22px;
+  line-height: 1.28;
+  margin-bottom: 7px;
+}
+
+.intro-visuals {
+  display: grid;
+  gap: 12px;
+}
+
+.location-map-wrap {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  /* Keep this in sync with the second grid-template-columns value above. */
+  width: 520px;
+}
+
+.intro-profile .location-map {
+  display: block;
+  height: auto;
+  /* Keep this in sync with .location-map-wrap width. */
+  width: 520px;
+}
+
+/* Main world-map arrow.
+   left/top place the arrowhead on the map because the arrowhead is ::before.
+   Increase left to move the arrowhead east/right; increase top to move it south/down.
+   width controls how far the arrow extends back toward the label.
+   transform rotate controls the arrow angle. */
+.map-arrow {
+  background: #1f2937;
+  height: 2px;
+  left: 48.5%;
+  position: absolute;
+  top: 15.3%;
+  transform: rotate(-10deg);
+  transform-origin: left center;
+  width: 136px;
+  z-index: 2;
+}
+
+/* Arrowhead for the main world-map callout. */
+.map-arrow::before {
+  border-bottom: 5px solid transparent;
+  border-right: 9px solid #1f2937;
+  border-top: 5px solid transparent;
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: -4px;
+}
+
+/* Text label at the tail end of the main arrow. */
+.map-label {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  color: #111827;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.1;
+  padding: 5px 7px;
+  position: absolute;
+  left: 75%;
+  top: 2.9%;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Zoomed inset map. This reuses the same world map image, cropped with overflow hidden. */
+.uk-inset {
+  background: #eef6fb;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  bottom: 10px;
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.28);
+  height: 126px;
+  overflow: hidden;
+  position: absolute;
+  right: 10px;
+  width: 170px;
+  z-index: 3;
+}
+
+/* Crop position for the zoomed UK inset.
+   Move left closer to 0 to shift the map image right inside the crop.
+   Move top closer to 0 to shift the map image down inside the crop.
+   Increase width to zoom in further. */
+.uk-inset img {
+  left: -1386px;
+  position: absolute;
+  top: -210px;
+  width: 3100px;
+}
+
+/* Red Nottingham dot inside the zoomed inset.
+   Increase left to move the dot right; increase top to move it down. */
+.uk-dot {
+  background: #b42318;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 0 0 5px rgba(180, 35, 24, 0.28);
+  height: 10px;
+  left: 47%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  z-index: 4;
+}
+
+.small {
+  font-size: 75%;
+}
+
+/* Generic two-column layout used on some content slides. */
+.two-col {
+  align-items: stretch;
+  box-sizing: border-box;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 18px;
+  max-width: 88%;
+}
+
+/* Plain informational panels. Avoid using these where normal text is clearer. */
+.plain-panel {
+  background: #f7fbff;
+  border: 2px solid #0868ac;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 22px;
+  line-height: 1.3;
+  padding: 18px 20px;
+}
+
+.plain-panel strong,
+.plain-panel .panel-title {
+  color: #084081;
+  display: block;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.plain-panel p {
+  margin: 0;
+}
+
+/* Workshop overview pipeline on the overview slide. */
+.pipeline {
+  align-items: stretch;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 28px;
+  margin-top: 22px;
+}
+
+.pipeline-box {
+  background: #f7fbff;
+  border: 2px solid #0868ac;
+  border-radius: 8px;
+  flex: 1;
+  font-size: 19px;
+  line-height: 1.25;
+  padding: 14px;
+  text-align: center;
+}
+
+.pipeline-box strong,
+.pipeline-box .panel-title {
+  color: #084081;
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+code,
+.inline-code {
+  background: #eef6fc;
+  border-radius: 4px;
+  color: #084081;
+  font-family: "Source Code Pro", "Menlo", "Consolas", monospace;
+  font-size: 0.88em;
+  padding: 1px 4px;
+}
+
+.pipeline-arrow {
+  align-self: center;
+  color: #0868ac;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* Lexical decision task stimulus table. */
+.stimulus-table {
+  border-collapse: collapse;
+  font-size: 28px;
+  margin: 20px auto;
+  width: 88%;
+}
+
+.stimulus-table th,
+.stimulus-table td {
+  border-bottom: 1px solid #bdbdbd;
+  padding: 10px 18px;
+  text-align: left;
+}
+
+.stimulus-table th {
+  color: #084081;
+}
+
+.ldt-stimuli td {
+  vertical-align: middle;
+}
+
+.ldt-stimuli img {
+  display: block;
+  max-height: 84px;
+  max-width: 190px;
+}
+
+.stim-label {
+  color: #555555;
+  display: block;
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+/* Recommended reading slide: two reference columns. */
+.reading-columns {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  font-size: 21px;
+  line-height: 1.28;
+}
+
+.reading-columns ul {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.reading-columns li {
+  margin-bottom: 8px;
+}
+
+/* Base R versus tidyverse comparison table. */
+.comparison-grid {
+  display: grid;
+  font-size: 18px;
+  grid-template-columns: minmax(150px, 0.8fr) minmax(300px, 1.9fr) minmax(360px, 2.3fr);
+  line-height: 1.22;
+  width: 100%;
+}
+
+.comparison-grid > div {
+  border-bottom: 1px solid #d1d5db;
+  padding: 8px 6px;
+  white-space: nowrap;
+}
+
+.comparison-grid .comparison-header {
+  color: #084081;
+  font-weight: 700;
+}
+
+.comparison-grid code {
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.comparison-table table {
+  font-size: 18px;
+  line-height: 1.12;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 4px 5px;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.comparison-table code {
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.comparison-table th:nth-child(1),
+.comparison-table td:nth-child(1) {
+  width: 9% !important;
+}
+
+.comparison-table th:nth-child(2),
+.comparison-table td:nth-child(2) {
+  width: 39% !important;
+}
+
+.comparison-table th:nth-child(3),
+.comparison-table td:nth-child(3) {
+  width: 52% !important;
+}
+
+/* Final workflow/function overview table. */
+.function-overview table {
+  font-size: 22px;
+  line-height: 1.22 !important;
+  margin-top: 14px !important;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.function-overview th,
+.function-overview td {
+  line-height: 1.22 !important;
+  padding: 7px 9px !important;
+  vertical-align: top;
+}
+
+.function-overview tr {
+  height: auto !important;
+}
+
+.function-overview p {
+  line-height: 1.22 !important;
+  margin: 0 !important;
+}
+
+.function-overview th:nth-child(1),
+.function-overview td:nth-child(1) {
+  width: 34%;
+}
+
+.function-overview th:nth-child(2),
+.function-overview td:nth-child(2) {
+  width: 66%;
+}
+
+.pivot-exercise-note {
+  /* Negative margin lifts the final pivoting exercise note slightly. */
+  margin-top: -4px !important;
+}
+
+/* Default code-block style. This affects R code input chunks. */
+pre {
+  background: #f7fbff !important;
+  border: 1px solid #c7dceb !important;
+  border-left: 5px solid #2b8cbe !important;
+  border-radius: 4px;
+  box-shadow: none !important;
+  color: #263238;
+  font-size: 20px;
+  line-height: 1.28;
+  margin-left: 42px !important;
+  margin-right: auto !important;
+  padding: 10px 14px 10px 18px !important;
+  text-align: left;
+  width: calc(100% - 96px);
+}
+
+pre code {
+  background: transparent !important;
+  color: inherit;
+  font-size: inherit;
+}
+
+.prettyprint {
+  background: #f7fbff !important;
+  border: 1px solid #c7dceb !important;
+  border-left: 5px solid #2b8cbe !important;
+  border-radius: 4px;
+  margin-left: 42px !important;
+  margin-right: auto !important;
+  padding: 10px 14px 10px 18px !important;
+  text-align: left;
+  width: calc(100% - 96px);
+}
+
+/* Printed R output, especially tibble output.
+   This is separate from code input chunks: grey accent, console-like font,
+   larger line-height, and preserved spacing for column alignment. */
+pre.r-output,
+pre.lang-r-output,
+slides > slide pre:not(.prettyprint) {
+  background: #f8fafc !important;
+  border: 1px solid #d1d5db !important;
+  border-left: 5px solid #9ca3af !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  color: #111827 !important;
+  font-family: "Menlo", "Consolas", "Liberation Mono", monospace;
+  font-feature-settings: "liga" 0, "calt" 0;
+  font-variant-ligatures: none;
+  font-size: 19px;
+  letter-spacing: 0.015em;
+  line-height: 1.5;
+  margin-left: 42px !important;
+  margin-right: auto !important;
+  max-height: 360px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 14px 10px 18px !important;
+  white-space: pre;
+  width: calc(100% - 96px);
+}
+
+/* Prevent syntax-highlighter colours from leaking into printed tibble output. */
+pre.r-output *,
+pre.lang-r-output *,
+slides > slide pre:not(.prettyprint) * {
+  color: inherit !important;
+  font-style: normal !important;
+  font-weight: inherit !important;
+}
+
+/* Special classes inserted by assets/code-highlight.js for output styling. */
+pre.r-output .r-missing-value,
+pre.lang-r-output .r-missing-value,
+slides > slide pre:not(.prettyprint) .r-missing-value {
+  color: #b42318 !important;
+  font-style: normal !important;
+}
+
+pre.r-output .r-negative-number,
+pre.lang-r-output .r-negative-number,
+slides > slide pre:not(.prettyprint) .r-negative-number {
+  color: #b42318 !important;
+}
+
+pre.r-output .r-output-meta,
+pre.lang-r-output .r-output-meta,
+slides > slide pre:not(.prettyprint) .r-output-meta {
+  color: #6b7280 !important;
+  font-size: 0.88em;
+}
+
+pre.r-output .r-variable-type,
+pre.lang-r-output .r-variable-type,
+slides > slide pre:not(.prettyprint) .r-variable-type {
+  color: #6b7280 !important;
+  font-size: 0.88em;
+}
+
+.prettyprint .com,
+.sourceCode .co {
+  color: #5f6f7a;
+  font-style: italic;
+}
+
+.prettyprint .lit,
+.sourceCode .dv,
+.sourceCode .fl,
+.sourceCode .cn {
+  color: #9a3412;
+}
+
+.prettyprint .kwd,
+.sourceCode .cf,
+.sourceCode .kw,
+.sourceCode .ot {
+  color: #005cc5;
+  font-weight: 700;
+}
+
+.prettyprint .typ,
+.sourceCode .dt {
+  color: #6f42c1;
+}
+
+.prettyprint .str,
+.sourceCode .st,
+.sourceCode .sc {
+  color: #22863a;
+}
+
+.prettyprint .fun,
+.sourceCode .fu {
+  color: #005cc5;
+  font-weight: 700;
+}
+
+.r-function-call {
+  color: #005cc5 !important;
+  font-weight: 700;
+}
+
+.prettyprint .var,
+.sourceCode .va {
+  color: #24292e;
+}
+
+.prettyprint .pln,
+.sourceCode {
+  color: #263238;
+}
+
+.prettyprint .pun,
+.prettyprint .opn,
+.prettyprint .clo,
+.sourceCode .op {
+  color: #455a64;
+}
+
+slides > slide {
+  background: #fbfbf7;
+  color: #222222;
+}
+
+.workshop {
+  background: #f6f8fa;
+  border-left: 8px solid #555555;
+  font-size: 23px;
+  margin-top: 1em;
+  padding: 14px 20px;
+}
+
+.stretch {
+  background: #fff7e6;
+  border-left: 8px solid #c77c02;
+  font-size: 22px;
+  margin-top: 1em;
+  padding: 12px 18px;
+}
+
+.smalltable .table {
+  font-size: 18px;
+}
+
+.smaller pre {
+  font-size: 13px;
+}
+
+.module-plan-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 16px;
+  width: 100%;
+}
+
+.module-plan-grid > div {
+  background: #f7fbff;
+  border: 1px solid #c7dceb;
+  border-left: 5px solid #0868ac;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 19px;
+  line-height: 1.22;
+  min-height: 94px;
+  padding: 10px 12px;
+}
+
+.module-plan-grid strong {
+  color: #084081;
+  display: block;
+  font-size: 21px;
+  margin-bottom: 5px;
+}
+
+.compact-take-home {
+  font-size: 21px;
+  margin-top: 16px;
+  padding: 10px 16px;
+}
+
+/* Bibliography slides can contain long citations; use columns before shrinking too far. */
+.references #refs,
+.references .references,
+.references div[id="refs"] {
+  column-count: 2;
+  column-gap: 28px;
+}
+
+.references,
+.references p,
+.references li,
+.references .csl-entry,
+#refs,
+#refs p,
+#refs .csl-entry {
+  font-size: 20px !important;
+  line-height: 1.22 !important;
+}
+
+.references .csl-entry,
+#refs .csl-entry {
+  break-inside: avoid;
+  margin-bottom: 9px !important;
+}
+
+.two-col-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin: 10px 0 14px;
+}
+
+.two-col-list ul {
+  margin-top: 0;
+}
